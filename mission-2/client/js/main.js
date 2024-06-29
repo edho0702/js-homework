@@ -1,3 +1,4 @@
+import { setBgColor, setImage, setNameText } from "./util.js";
 
 /* 
 
@@ -9,16 +10,20 @@
 
 */
 
+document.querySelectorAll(".nav li button").forEach((button) => {
+    button.addEventListener("click", function () {
+        document.querySelector(".nav li.is-active").classList.remove("is-active");
 
+        this.parentElement.classList.add("is-active");
+        setBgColor();
+        setImage();
+        setNameText();
+        const name = document.querySelector(".nickName").textContent.trim();
+        playAudio(name);
+    });
+});
 
-
-
-
-
-
-
-
-
-
-
-
+function playAudio(name) {
+    const audio = new Audio(`./assets/audio/${name}.m4a`);
+    audio.play();
+}
